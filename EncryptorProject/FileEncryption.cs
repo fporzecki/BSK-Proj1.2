@@ -20,7 +20,7 @@ namespace EncryptorProject
         public static CipherMode CipheringMode;
         public static int BufferSize;
         public static int KeySize;
-        public static int FeedbackSize;
+        public static int FeedbackSize = 8;
         public static List<User> Users;
 
         public static void InitializeEncryption(string inputFile, string outputFile)

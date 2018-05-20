@@ -21,7 +21,7 @@
                     <TextBox x:Name="outputFile_TextBox" HorizontalAlignment="Left" Height="23" Margin="165,54,0,0" VerticalAlignment="Top" Width="262"/>
                     <Label Content="Output file name:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
                     <GroupBox Header="Encryption mode" HorizontalAlignment="Left" Height="112" Margin="10,83,0,0" VerticalAlignment="Top" Width="111"/>
-                    <GroupBox Header="Feedback size" HorizontalAlignment="Left" Height="59" Margin="203,144,0,0" VerticalAlignment="Top" Width="113" Name="feedbackSize_GroupBox" Visibility="Hidden">
+                    <!--<GroupBox Header="Feedback size" HorizontalAlignment="Left" Height="59" Margin="203,144,0,0" VerticalAlignment="Top" Width="113" Name="feedbackSize_GroupBox" Visibility="Hidden">
                         <ComboBox x:Name="feedbackSizeComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="81" SelectedIndex="2">
                             <ComboBoxItem Name="FeedbackSize2">2</ComboBoxItem>
                             <ComboBoxItem Name="FeedbackSize4">4</ComboBoxItem>
@@ -30,7 +30,7 @@
                             <ComboBoxItem Name="FeedbackSize32">32</ComboBoxItem>
                             <ComboBoxItem Name="FeedbackSize64">64</ComboBoxItem>
                         </ComboBox>
-                    </GroupBox>
+                    </GroupBox>-->
                     <Button x:Name="generateRandomNumber_Button" Content="Generate key" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" Width="83" Height="32" Click="GenerateRandomNumber_Button_Click"/>
                     <Button x:Name="encryptFile_Button" Content="Encrypt" HorizontalAlignment="Left" Margin="98,207,0,0" VerticalAlignment="Top" Width="83" Height="32" Click="EncryptFile_Button_Click" IsEnabled="False"/>
 

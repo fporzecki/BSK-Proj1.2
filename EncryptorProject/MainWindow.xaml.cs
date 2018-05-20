@@ -154,7 +154,7 @@ namespace EncryptorProject
                 FileEncryption.CipheringMode = GetSelectedCipherMode();
                 FileEncryption.KeySize = Int32.Parse(keySizeComboBox.Text);
                 FileEncryption.BufferSize = 1 << 15;
-                FileEncryption.FeedbackSize = Int32.Parse(feedbackSizeComboBox.Text);
+                //FileEncryption.FeedbackSize = Int32.Parse(feedbackSizeComboBox.Text);
                 FileEncryption.IV = GetSaltBytes(8);
 
                 FileEncryption.InitializeEncryption(inputFilePath, outputFileName);
@@ -171,10 +171,10 @@ namespace EncryptorProject
                 return;
             TripleDESHelper.Mode = GetSelectedCipherMode();
 
-            if (TripleDESHelper.Mode == CipherMode.CFB || TripleDESHelper.Mode == CipherMode.OFB)
-                feedbackSize_GroupBox.Visibility = Visibility.Visible;
-            else
-                feedbackSize_GroupBox.Visibility = Visibility.Hidden;
+            //if (TripleDESHelper.Mode == CipherMode.CFB || TripleDESHelper.Mode == CipherMode.OFB)
+            //    feedbackSize_GroupBox.Visibility = Visibility.Visible;
+            //else
+            //    feedbackSize_GroupBox.Visibility = Visibility.Hidden;
 
             String text = String.Format("{0} - {1}", TripleDESHelper.LegalBlockSizes[0].MinSize, TripleDESHelper.LegalBlockSizes[0].MaxSize);
             if (TripleDESHelper.LegalBlockSizes[0].MinSize == TripleDESHelper.LegalBlockSizes[0].MaxSize)

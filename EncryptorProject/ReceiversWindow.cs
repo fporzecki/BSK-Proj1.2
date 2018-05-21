@@ -17,9 +17,8 @@ namespace EncryptorProject
             listBox.ItemsSource = User.LoadUsers();
             _receivers = receivers;
         }
-
-
-        private void button_Click(object sender, RoutedEventArgs e)
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             foreach (User item in listBox.SelectedItems)
             {

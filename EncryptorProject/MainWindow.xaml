@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EncryptorProject"
         mc:Ignorable="d"
-        Title="UberEncryptor3000" ResizeMode="NoResize" Padding="100" WindowStartupLocation="CenterScreen" BorderThickness="0" UseLayoutRounding="False" Margin="0" Height="326.438" Width="538.589">
+        Title="UberEncryptor3000" ResizeMode="NoResize" Padding="100" WindowStartupLocation="CenterScreen" BorderThickness="0" UseLayoutRounding="False" Margin="0" Height="335.438" Width="538.589">
     <Grid>
 
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="297" VerticalAlignment="Top" Width="533">
-            <TabItem Header="Encryption">
+            <TabItem Header="Encryption" Selector.Selected="TabItem_Selected_1">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0.333,27">
                     <TextBox x:Name="inputFile_TextBox" HorizontalAlignment="Left" Height="23" Margin="165,10,0,0" VerticalAlignment="Top" Width="262"/>
                     <Label Content="Input file directory:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
@@ -50,7 +50,7 @@
                     <Button x:Name="removeRecipient" Content="Remove" HorizontalAlignment="Left" Margin="458,108,0,0" VerticalAlignment="Top" Width="49" Click="RemoveReceiverClick" RenderTransformOrigin="1.952,-1.817"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Decryption">
+            <TabItem Header="Decryption" Selector.Selected="TabItem_Selected_1">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0.333,28">
                     <Label x:Name="label3" Content="Input file directory:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="decryptionInputFileBox" HorizontalAlignment="Left" Height="23" Margin="166,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
@@ -67,17 +67,17 @@
                     <Label x:Name="extension_Label" Content="" HorizontalAlignment="Left" Margin="124,94,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Users">
+            <TabItem Header="Users" Selector.Selected="TabItem_Selected">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label" Content="E-mail:" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label1" Content="Password:" HorizontalAlignment="Left" Margin="30,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="132,34,0,0" TextWrapping="Wrap" Text="example@gmail.com" VerticalAlignment="Top" Width="120"/>
-                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="132,72,0,0" VerticalAlignment="Top" Width="120" Height="23" RenderTransformOrigin="-1.358,-0.971" PasswordChanged="PasswordBox_PasswordChanged"/>
-                    <PasswordBox x:Name="passwordBoxRepeat" HorizontalAlignment="Left" Margin="132,111,0,0" VerticalAlignment="Top" Width="120" Height="23" PasswordChanged="PasswordBoxRepeat_PasswordChanged"/>
-                    <Label x:Name="label2" Content="Repeat password:" HorizontalAlignment="Left" Margin="30,108,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="button" Content="Create user" HorizontalAlignment="Left" Margin="30,162,0,0" VerticalAlignment="Top" Width="75" Click="AddUser_Button_Click"/>
-                    <Label x:Name="passwordError" Content="" HorizontalAlignment="Left" Margin="132,95,0,0" VerticalAlignment="Top" Width="325" Foreground="#FFFC0000" FontSize="10" Height="16" Padding="0"/>
-                    <Label x:Name="passwordReapetError" Content="" HorizontalAlignment="Left" Margin="132,134,0,0" VerticalAlignment="Top" Width="325" Foreground="Red" FontSize="10" Height="14" Padding="0"/>
+                    <Label x:Name="label1" Content="Password:" HorizontalAlignment="Left" Margin="251,30,0,0" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="81,34,0,0" TextWrapping="Wrap" Text="example@gmail.com" VerticalAlignment="Top" Width="120"/>
+                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="353,34,0,0" VerticalAlignment="Top" Width="120" Height="23" RenderTransformOrigin="-1.358,-0.971" PasswordChanged="PasswordBox_PasswordChanged"/>
+                    <PasswordBox x:Name="passwordBoxRepeat" HorizontalAlignment="Left" Margin="353,80,0,0" VerticalAlignment="Top" Width="120" Height="23" PasswordChanged="PasswordBoxRepeat_PasswordChanged"/>
+                    <Label x:Name="label2" Content="Repeat password:" HorizontalAlignment="Left" Margin="251,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.583,0.962"/>
+                    <Button x:Name="button" Content="Create user" HorizontalAlignment="Left" Margin="30,80,0,0" VerticalAlignment="Top" Width="75" Click="AddUser_Button_Click"/>
+                    <Label x:Name="passwordError" Content="" HorizontalAlignment="Left" Margin="251,56,0,0" VerticalAlignment="Top" Width="266" FontSize="10" Height="16" Padding="0"/>
+                    <Label x:Name="passwordReapetError" Content="" HorizontalAlignment="Left" Margin="251,108,0,0" VerticalAlignment="Top" Width="266" Foreground="Red" FontSize="10" Height="14" Padding="0"/>
                 </Grid>
             </TabItem>
 

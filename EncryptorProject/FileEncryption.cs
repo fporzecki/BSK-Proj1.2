@@ -58,14 +58,15 @@ namespace EncryptorProject
             }
 
             if (EncryptFile(inputFile, outputFile))
-                MessageBox.Show("Successfuly written to file");
+            {
+                MessageBox.Show("File successfully encrypted.");
+                ProgressUpdater(0);
+            }
         }
 
         public static void LoadPossibleRecipientsAndFileType(string inputFile, ListBox receivers, Label extension)
         {
             var isSupportedFile = false;
-
-            //read the header to memory
             using (var ms = new MemoryStream())
             {
                 using (var s = File.OpenText(inputFile))
@@ -88,8 +89,7 @@ namespace EncryptorProject
                     MessageBox.Show("Incorrect file");
                     return;
                 }
-
-                //read settings from header
+                
                 ms.Position = 0;
                 var xdoc = XDocument.Load(ms);
                 var root = xdoc.Element("EncryptedFileHeader");
@@ -118,7 +118,6 @@ namespace EncryptorProject
         public static void InitializeDecryption(string inputFile, string outputFile, User currentUser, string password)
         {
             var isSupportedFile = false;
-            //read the header to memory
             using (var ms = new MemoryStream())
             {
                 using (var s = File.OpenText(inputFile))
@@ -141,8 +140,7 @@ namespace EncryptorProject
                     MessageBox.Show("Incorrect file");
                     return;
                 }
-
-                //write settings from header
+                
                 ms.Position = 0;
                 var xdoc = XDocument.Load(ms);
                 var root = xdoc.Element("EncryptedFileHeader");
@@ -181,7 +179,10 @@ namespace EncryptorProject
             }
             
             if (DecryptFile(inputFile, outputFile))
+            {
                 MessageBox.Show("File successfuly decrypted");
+                ProgressUpdater(0);
+            }
         }
 
         private static bool EncryptFile(string inputFile, string outputFile)
@@ -197,7 +198,7 @@ namespace EncryptorProject
                     tripleDESAlgorithm.IV = IV;
                     tripleDESAlgorithm.Padding = PaddingMode.Zeros;
 
-                    MessageBox.Show($"Starting encryption, parameters:\nkey size: {KeySize}\nfeedback size: {FeedbackSize}\nmode: {CipheringMode.ToString()}");
+                    MessageBox.Show($"Starting encryption\nKey size: {KeySize}\nFeedback size: {FeedbackSize}\nMode: {CipheringMode.ToString()}");
 
                     var encryptor = tripleDESAlgorithm.CreateEncryptor(tripleDESAlgorithm.Key, tripleDESAlgorithm.IV);
                     var buffer = new byte[BufferSize];
@@ -239,7 +240,7 @@ namespace EncryptorProject
                     tripleDESAlgorithm.IV = IV;
                     tripleDESAlgorithm.Padding = PaddingMode.Zeros;
 
-                    MessageBox.Show($"Starting decryption, parameters:\nkey size: {KeySize}\nfeedback size: {FeedbackSize}\nmode: {CipheringMode.ToString()}");
+                    MessageBox.Show($"Starting decryption\nKey size: {KeySize}\nFeedback size: {FeedbackSize}\nMode: {CipheringMode.ToString()}");
 
                     var decryptor = tripleDESAlgorithm.CreateDecryptor(tripleDESAlgorithm.Key, tripleDESAlgorithm.IV);
                     var buffer = new byte[BufferSize];
@@ -249,7 +250,6 @@ namespace EncryptorProject
                     using (var bw = new BinaryWriter(cs))
                     using (var input = File.OpenRead(inputFile))
                     {
-                        //keep reading until we hit data label (we don't want to decrypt header)
                         var found = false;
                         while (!found)
                         {

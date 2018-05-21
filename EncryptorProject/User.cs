@@ -89,7 +89,7 @@ namespace EncryptorProject
             return Email;
         }
         
-        public static string validatePassword(string password)
+        public static string ValidatePassword(string password)
         {
             if (password.Length < 10) return "At least 10 chars";
             else if (!password.Any(ch => !char.IsLetterOrDigit(ch))) return "At least 1 special character";

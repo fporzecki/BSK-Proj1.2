@@ -153,7 +153,7 @@ namespace EncryptorProject
                 FileEncryption.Users = receiversListBox.Items.Cast<User>().ToList();
                 FileEncryption.CipheringMode = GetSelectedCipherMode();
                 FileEncryption.KeySize = Int32.Parse(keySizeComboBox.Text);
-                FileEncryption.BufferSize = 1 << 15;
+                FileEncryption.BufferSize = 1 << 22;
                 //FileEncryption.FeedbackSize = Int32.Parse(feedbackSizeComboBox.Text);
                 FileEncryption.IV = GetSaltBytes(8);
 
@@ -219,7 +219,7 @@ namespace EncryptorProject
 
             try
             {
-                FileEncryption.BufferSize = 1 << 15;
+                FileEncryption.BufferSize = 1 << 22;
 
 
                 var selectedUser = (User)decryptionRecipientsList.SelectedItem;
@@ -244,7 +244,7 @@ namespace EncryptorProject
             var userPassword = passwordBox.Password;
             var passwordRepeated = passwordBoxRepeat.Password;
 
-            var passwordError = User.validatePassword(userPassword);
+            var passwordError = User.ValidatePassword(userPassword);
             var repeatError = ValidateRepeatedPassoword();
 
             if(passwordError == null && repeatError == null && !String.IsNullOrEmpty(userEmail))
@@ -273,7 +273,7 @@ namespace EncryptorProject
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var error = User.validatePassword(passwordBox.Password);
+            var error = User.ValidatePassword(passwordBox.Password);
 
             if (error != null) passwordError.Content = error;
             else passwordError.Content = "";
@@ -305,6 +305,16 @@ namespace EncryptorProject
 
         private void KeySize_TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e) {
             e.Handled = !IsTextAllowed(e.Text) || ((TextBox)sender).Text.Length >= 3;
+        }
+
+        private void TabItem_Selected(object sender, RoutedEventArgs e)
+        {
+            encryptionProgressBar.Visibility = Visibility.Hidden;
+        }
+
+        private void TabItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            encryptionProgressBar.Visibility = Visibility.Visible;
         }
     }
 }

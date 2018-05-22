@@ -17,3 +17,4 @@ c:\users\rzecki\Source\Repos\EncryptorProject\EncryptorProject\obj\Debug\Receive
 c:\users\rzecki\Source\Repos\EncryptorProject\EncryptorProject\obj\Debug\RNGWindow.g.cs
 c:\users\rzecki\Source\Repos\EncryptorProject\EncryptorProject\obj\Debug\ReceiversWindow.baml
 c:\users\rzecki\Source\Repos\EncryptorProject\EncryptorProject\obj\Debug\RNGWindow.baml
+C:\Users\Rzecki\Source\Repos\EncryptorProject\EncryptorProject\bin\Debug\BouncyCastle.Crypto.dll

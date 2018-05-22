@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
 using System.Security.Cryptography;
@@ -27,12 +26,10 @@ namespace EncryptorProject
                     DispatcherPriority.Background
                 )
             );
-            
         }
 
         private void UpdateRNG(List<Point> coordinates)
         {
-            //use coordinates entered by user
             var bytes = new List<byte>();
             foreach (var coordinate in coordinates)
             {
@@ -40,13 +37,26 @@ namespace EncryptorProject
                 bytes.Add(Convert.ToByte(coordinate.Y));
             }
             
-            //get system uptime
             using (var uptime = new PerformanceCounter("System", "System Up Time"))
             {
-                uptime.NextValue();       //Call this an extra time before reading its value
+                uptime.NextValue();    
                 bytes.AddRange(BitConverter.GetBytes(uptime.NextValue()));
             }
             
+            FileEncryption.Key = GetSaltBytes(Int32.Parse(keySizeComboBox.Text) / 8);
+            encryptFile_Button.IsEnabled = true;
+        }
+
+        private void PerformRNG()
+        {
+            var bytes = new List<byte>();
+
+            using (var uptime = new PerformanceCounter("System", "System Up Time"))
+            {
+                uptime.NextValue();
+                bytes.AddRange(BitConverter.GetBytes(uptime.NextValue()));
+            }
+
             FileEncryption.Key = GetSaltBytes(Int32.Parse(keySizeComboBox.Text) / 8);
             encryptFile_Button.IsEnabled = true;
         }
@@ -85,9 +95,6 @@ namespace EncryptorProject
             //if (File.Exists(path)) return "Destination file already exists!";
             if (!Path.IsPathRooted(path)) return "Incorrect path for destination file!";
 
-            try { Path.GetFullPath(path); }
-            catch { return "Destination directory doesn't exist!"; }
-
             var pathAndFileName = path;
 
             var path2 = pathAndFileName.Substring(0, pathAndFileName.LastIndexOf("\\"));
@@ -123,8 +130,9 @@ namespace EncryptorProject
 
         private void GenerateRandomNumber_Button_Click(object sender, RoutedEventArgs e)
         {
-            var win2 = new RNGWindow(UpdateRNG);
-            win2.ShowDialog();
+            PerformRNG();
+            //var win2 = new RNGWindow(UpdateRNG);
+            //win2.ShowDialog();
         }
         
         private void EncryptFile_Button_Click(object sender, RoutedEventArgs e)
@@ -225,7 +233,7 @@ namespace EncryptorProject
                 var selectedUser = (User)decryptionRecipientsList.SelectedItem;
                 if(selectedUser == null)
                 {
-                    MessageBox.Show("A user was not chosen");
+                    MessageBox.Show("Please choose a user.");
                     return;
                 }
                 var password = decryptionPassword.Password;

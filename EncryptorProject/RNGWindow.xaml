@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EncryptorProject"
         mc:Ignorable="d"
-        Title="Random Generator" Height="375.63" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        Title="Random Generator" Height="364.959" Width="293.597" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
     <Grid>
-        <Canvas x:Name="userClickingInputCanvas" HorizontalAlignment="Left" Height="255" Margin="10,41,0,-28" VerticalAlignment="Top" Width="255" Background="Gainsboro" MouseLeftButtonUp="UserClickingInput_Canvas_MouseLeftButtonUp"/>
-        <Label Content="Click in 8 places on field below" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Canvas x:Name="userClickingInputCanvas" HorizontalAlignment="Left" Height="255" Margin="10,41,0,-28" VerticalAlignment="Top" Width="255" Background="Black" MouseLeftButtonUp="UserClickingInput_Canvas_MouseLeftButtonUp"/>
+        <Label Content="Make 8 clicks below" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="clicksCounterLabel" Content="0 / 8" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top"/>
 
     </Grid>

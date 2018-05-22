@@ -152,7 +152,7 @@ namespace EncryptorProject
                 var outputExtension = Path.GetExtension(outputFile);
                 if (outputExtension != extension)
                 {
-                    MessageBox.Show("File extension was change to " + extension);
+                    MessageBox.Show("File extension will be changed to: " + extension);
                     if (string.IsNullOrEmpty(outputExtension))
                         outputFile += extension;
                     else

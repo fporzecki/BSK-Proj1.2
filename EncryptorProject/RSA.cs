@@ -18,15 +18,6 @@ namespace EncryptorProject
         }
         
         private static bool _doOAEPPadding = true;
-        
-        public static byte[] Encrypt(byte[] content, Key publicKey)
-        {
-            using (var rsa = new RSACryptoServiceProvider())
-            {
-                rsa.FromXmlString(publicKey.ContentXML);
-                return rsa.Encrypt(content, _doOAEPPadding);
-            }
-        }
 
         public static string EncryptToString(byte[] content, Key publicKey)
         {
@@ -56,17 +47,6 @@ namespace EncryptorProject
 
                 return rsa.Decrypt(contentBytes, _doOAEPPadding);
             }
-        }
-
-        public static byte[] GenerateHash(string password, bool isForUserKeyProcessing = false)
-        {
-            var sha = SHA256Managed.Create();
-            var passwordBytes = Encoding.UTF8.GetBytes(password);
-            var hashed = sha.ComputeHash(passwordBytes);
-            var keySize = isForUserKeyProcessing ? 192 : FileEncryption.KeySize;
-            var result = new byte[keySize / 8];
-            Buffer.BlockCopy(hashed, 0, result, 0, result.Length);
-            return result;
         }
 
         public static void GenerateKeyPair(string publicKeyPath, string privateKeyPath, string privateKeyPassword)
@@ -104,6 +84,26 @@ namespace EncryptorProject
             var decryptedConten = FileEncryption.DecryptPrivateKey(encryptedContent, passwordHash);
             
             return new Key(decryptedConten);
+        }
+
+        private static byte[] GenerateHash(string password, bool isForUserKeyProcessing = false)
+        {
+            var sha = SHA256Managed.Create();
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+            var hashed = sha.ComputeHash(passwordBytes);
+            var keySize = isForUserKeyProcessing ? 192 : FileEncryption.KeySize;
+            var result = new byte[keySize / 8];
+            Buffer.BlockCopy(hashed, 0, result, 0, result.Length);
+            return result;
+        }
+
+        private static byte[] Encrypt(byte[] content, Key publicKey)
+        {
+            using (var rsa = new RSACryptoServiceProvider())
+            {
+                rsa.FromXmlString(publicKey.ContentXML);
+                return rsa.Encrypt(content, _doOAEPPadding);
+            }
         }
     }
 }

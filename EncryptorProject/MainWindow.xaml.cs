@@ -28,25 +28,6 @@ namespace EncryptorProject
             );
         }
 
-        private void UpdateRNG(List<Point> coordinates)
-        {
-            var bytes = new List<byte>();
-            foreach (var coordinate in coordinates)
-            {
-                bytes.Add(Convert.ToByte(coordinate.X));
-                bytes.Add(Convert.ToByte(coordinate.Y));
-            }
-            
-            using (var uptime = new PerformanceCounter("System", "System Up Time"))
-            {
-                uptime.NextValue();    
-                bytes.AddRange(BitConverter.GetBytes(uptime.NextValue()));
-            }
-            
-            FileEncryption.Key = GetSaltBytes(Int32.Parse(keySizeComboBox.Text) / 8);
-            encryptFile_Button.IsEnabled = true;
-        }
-
         private void PerformRNG()
         {
             var bytes = new List<byte>();
@@ -61,7 +42,7 @@ namespace EncryptorProject
             encryptFile_Button.IsEnabled = true;
         }
 
-        public static byte[] GetSaltBytes(int length)
+        private static byte[] GetSaltBytes(int length)
         {
             var bytes = new byte[length];
             for (int i = 0; i < length; i++)
